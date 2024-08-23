@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Roaming File Upload</title>
+    </head>
+    <body>
+        <h1>Upload Roaming Files</h1>
+        
+        <h2>Upload Roaming IN File</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form_in.as_p }}
+            {# a way to render a Django form as HTML, where each form field is wrapped in <p> tags #}
+            <button type="submit" name="roaming_in_submit">Upload Roaming IN</button>
+        </form>
+        
+        <h2>Upload Roaming OUT File</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form_out.as_p }}
+            <button type="submit" name="roaming_out_submit">Upload Roaming OUT</button>
+        </form>
+    </body>
+</html>
