@@ -1,14 +1,18 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Roaming Out Statistics</title>
-        {% load plotly_dash %}
-        
-    </head>
-    <body>
-        {% plotly_app name="MyDashApp" %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/dash.css' %}">
+    <title>Roaming Out Statistics</title>
+    {% load plotly_dash %}
+</head>
+<body>
+<div class="dash-container">
+    {% plotly_app name="MyDashApp" %}
+</div>
+</body>
 </html>
+
 
