@@ -15,16 +15,13 @@ def home(request):
                 # Save the form to create an instance of RoamingOut
                 roaming_out_instance = form_out.save()
 
-                # Get the input file path
                 input_file_path = roaming_out_instance.input_file.path
-
-                # Process the input file to generate the first output DataFrame
                 output_df = process_output(input_file_path)
 
-                # Save the first output DataFrame as a CSV file
                 output_directory = os.path.join(settings.MEDIA_ROOT, 'roaming_out_files', 'outputs')
                 os.makedirs(output_directory, exist_ok=True)
-                #output_file_path = os.path.join(output_directory, 'first_output.csv')
+
+                #outputs should have different file names
                 timestamp = now().strftime('%Y%m%d_%H%M%S')
                 output_file_path = os.path.join(output_directory, f'output_{timestamp}.csv')
                 output_df.to_csv(output_file_path, index=False)
@@ -34,6 +31,7 @@ def home(request):
                 roaming_out_instance.save()
 
                 # Redirect to the statistics page
+                #pk primary key
                 return redirect('statistics_view', pk=roaming_out_instance.pk)
     else:
         form_out = RoamingOutForm()
