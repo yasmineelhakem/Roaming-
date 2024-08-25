@@ -1,12 +1,11 @@
 import os
-import pandas as pd
-import numpy as np
 from django.conf import settings
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RoamingOutForm
-from .models import RoamingOut
 from .utils.roaming_out.output_processing import process_output
 from django.utils.timezone import now
+from .utils.roaming_out.graphs import create_dash_app
+from .models import RoamingOut
 
 def home(request):
     if request.method == 'POST':
@@ -34,8 +33,22 @@ def home(request):
                 roaming_out_instance.output_file.name = os.path.relpath(output_file_path, settings.MEDIA_ROOT)
                 roaming_out_instance.save()
 
-                return redirect('home')
+                # Redirect to the statistics page
+                return redirect('statistics_view', pk=roaming_out_instance.pk)
     else:
         form_out = RoamingOutForm()
 
     return render(request, 'home.html', {'form_out': form_out})
+
+def statistics_view(request, pk):
+    # Get the instance of RoamingOut based on the primary key (pk)
+    roaming_out_instance = get_object_or_404(RoamingOut, pk=pk)
+
+    # Path to the output file
+    output_file_path = os.path.join(settings.MEDIA_ROOT, roaming_out_instance.output_file.name)
+
+    # Create the Dash app with the output file path
+    create_dash_app(output_file_path)
+
+    # Render the HTML template that includes the Dash app
+    return render(request, 'roaming_out_statistics.html')
