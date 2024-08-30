@@ -2,23 +2,44 @@
 <html lang="en">
     <head>
         <title>Roaming File Upload</title>
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.3/dist/css/boosted.min.css" rel="stylesheet" integrity="sha384-laZ3JUZ5Ln2YqhfBvadDpNyBo7w5qmWaRnnXuRwNhJeTEFuSdGbzl4ZGHAEnTozR" crossorigin="anonymous">
     </head>
     <body>
-        <h1>Upload Roaming Files</h1>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Upload Roaming Files</h1>
         
-        <h2>Upload Roaming IN File</h2>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form_in.as_p }}
-            {# a way to render a Django form as HTML, where each form field is wrapped in <p> tags #}
-            <button type="submit" name="roaming_in_submit">Generate Statistics</button>
-        </form>
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2 class="h4">Upload Roaming IN File</h2>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form_in.as_p }}
+                    </div>
+                    <button type="submit" name="roaming_in_submit" class="btn btn-primary">Generate Statistics</button>
+                </form>
+            </div>
+        </div>
         
-        <h2>Upload Roaming OUT File</h2>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form_out.as_p }}
-            <button type="submit" name="roaming_out_submit">Generate Statistics</button>
-        </form>
+        <div class="card">
+            <div class="card-header">
+                <h2 class="h4">Upload Roaming OUT File</h2>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form_out.as_p }}
+                    </div>
+                    <button type="submit" name="roaming_out_submit" class="btn btn-primary">Generate Statistics</button>
+                </form>
+            </div>
+        </div>
+    </div>
     </body>
 </html>

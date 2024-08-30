@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'roaming_files',
     'django_plotly_dash.apps.DjangoPlotlyDashConfig',
-    'dpd_static_support'
+    'dpd_static_support',
+    "bootstrap5",
 ]
 
 MIDDLEWARE = [
