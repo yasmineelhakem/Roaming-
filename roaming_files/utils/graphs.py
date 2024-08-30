@@ -48,15 +48,17 @@ def roaming_out_dash(file_path):
         [Input('vlrs-per-operator', 'id')]  # Use a placeholder input, as the graphs are static after loading
     )
     def update_graphs(_):
-        # VLRs per Country (Pie Chart)
-        fig_vlrs_country = px.pie(
+        # VLRs per Country (histogram)
+        fig_vlrs_country = px.histogram(
             vlrs_per_country,
-            names=vlrs_per_country.index,
-            values=vlrs_per_country.values,
+            x=vlrs_per_country.index,
+            y=vlrs_per_country.values,
             title='VLRs per Country',
-            color_discrete_sequence=px.colors.sequential.Blues_r
+            color_discrete_sequence=['#FF5E0E']
         )
-        fig_vlrs_country.update_traces(textposition='inside')
+        fig_vlrs_country.update_traces(
+            hovertemplate='%{y} VLRs in %{x}<extra></extra>',
+        )
         fig_vlrs_country.update_layout(
             uniformtext_minsize=12,
             uniformtext_mode='hide',
@@ -67,17 +69,22 @@ def roaming_out_dash(file_path):
                 'xanchor': 'center'
             },
             height=600,
+            bargap=0.01,
+            xaxis_title='Country',
+            yaxis_title='Number of VLRs'
         )
 
-        # Subscribers per Country (Pie Chart)
-        fig_subs_country = px.pie(
+        # Subscribers per Country (histogram)
+        fig_subs_country = px.histogram(
             subs_per_country,
-            names=subs_per_country.index,
-            values=subs_per_country.values,
+            x=subs_per_country.index,
+            y=subs_per_country.values,
             title='Subscribers per Country',
-            color_discrete_sequence=px.colors.sequential.PuBu_r
+            color_discrete_sequence=['#FF5E0E']
         )
-        fig_subs_country.update_traces(textposition='inside')
+        fig_subs_country.update_traces(
+            hovertemplate='%{y} Subscribers in %{x}<extra></extra>',
+        )
         fig_subs_country.update_layout(
             uniformtext_minsize=12,
             uniformtext_mode='hide',
@@ -88,6 +95,9 @@ def roaming_out_dash(file_path):
                 'xanchor': 'center'
             },
             height=600,
+            bargap=0.01,
+            xaxis_title='Country',
+            yaxis_title='Subscribers'
         )
 
         # VLRs per Operator (Horizontal Bar Chart)
@@ -95,7 +105,7 @@ def roaming_out_dash(file_path):
             x=vlrs_per_operator.tolist(),
             y=vlrs_per_operator.index.tolist(),
             orientation='h',
-            marker=dict(color='blue', line=dict(color='black', width=1))
+            marker=dict(color='#FF5E0E', line=dict(color='#FF5E0E', width=1))
         ))
         fig_vlrs_operator.update_layout(
             title={'text': 'Repartition of VLRs per Operator', 'font': {'size': 30}, 'x': 0.5, 'xanchor': 'center'},
@@ -111,7 +121,7 @@ def roaming_out_dash(file_path):
             x=subs_per_operator.tolist(),
             y=subs_per_operator.index.tolist(),
             orientation='h',
-            marker=dict(color='blue', line=dict(color='black', width=1))
+            marker=dict(color='#FF5E0E', line=dict(color='#FF5E0E', width=1))
         ))
         fig_subs_operator.update_layout(
             title={'text': 'Repartition of Subscribers per Operator', 'font': {'size': 30}, 'x': 0.5, 'xanchor': 'center'},
@@ -167,15 +177,17 @@ def roaming_in_dash(file_path):
         [Input('hlrs-per-operator', 'id')]  # Use a placeholder input, as the graphs are static after loading
     )
     def update_graphs(_):
-        # HLRs per Country (Pie Chart)
-        fig_hlrs_country = px.pie(
+        # HLRs per Country (histogram)
+        fig_hlrs_country = px.histogram(
             hlrs_per_country,
-            names=hlrs_per_country.index,
-            values=hlrs_per_country.values,
+            x=hlrs_per_country.index,
+            y=hlrs_per_country.values,
             title='HLRs per Country',
-            color_discrete_sequence=px.colors.sequential.Blues_r
+            color_discrete_sequence=["#FF5E0E"]
         )
-        fig_hlrs_country.update_traces(textposition='inside')
+        fig_hlrs_country.update_traces(
+            hovertemplate='%{y} HLRs in %{x}<extra></extra>',
+        )
         fig_hlrs_country.update_layout(
             uniformtext_minsize=12,
             uniformtext_mode='hide',
@@ -186,17 +198,22 @@ def roaming_in_dash(file_path):
                 'xanchor': 'center'
             },
             height=600,
+            bargap=0.01,
+            xaxis_title='Country',
+            yaxis_title='Number of HLRs'
         )
 
-        # Subscribers per Country (Pie Chart)
-        fig_subs_country = px.pie(
+        # Subscribers per Country (histogram)
+        fig_subs_country = px.histogram(
             subs_per_country,
-            names=subs_per_country.index,
-            values=subs_per_country.values,
+            x=subs_per_country.index,
+            y=subs_per_country.values,
             title='Subscribers per Country',
-            color_discrete_sequence=px.colors.sequential.PuBu_r
+            color_discrete_sequence=["#FF5E0E"]
         )
-        fig_subs_country.update_traces(textposition='inside')
+        fig_subs_country.update_traces(
+            hovertemplate='%{y} Subscriber in %{x}<extra></extra>',
+        )
         fig_subs_country.update_layout(
             uniformtext_minsize=12,
             uniformtext_mode='hide',
@@ -207,14 +224,17 @@ def roaming_in_dash(file_path):
                 'xanchor': 'center'
             },
             height=600,
+            bargap=0.01,
+            xaxis_title='Country',
+            yaxis_title='Number of Subscribers'
         )
 
-        # hLRs per Operator (Horizontal Bar Chart)
+        # HLRs per Operator (Horizontal Bar Chart)
         fig_hlrs_operator = go.Figure(go.Bar(
             x=hlrs_per_operator.tolist(),
             y=hlrs_per_operator.index.tolist(),
             orientation='h',
-            marker=dict(color='blue', line=dict(color='black', width=1))
+            marker=dict(color="#FF5E0E", line=dict(color="#FF5E0E", width=1))
         ))
         fig_hlrs_operator.update_layout(
             title={'text': 'Repartition of HLRs per Operator', 'font': {'size': 30}, 'x': 0.5, 'xanchor': 'center'},
@@ -230,7 +250,7 @@ def roaming_in_dash(file_path):
             x=subs_per_operator.tolist(),
             y=subs_per_operator.index.tolist(),
             orientation='h',
-            marker=dict(color='blue', line=dict(color='black', width=1))
+            marker=dict(color="#FF5E0E", line=dict(color="#FF5E0E", width=1))
         ))
         fig_subs_operator.update_layout(
             title={'text': 'Repartition of Subscribers per Operator', 'font': {'size': 30}, 'x': 0.5, 'xanchor': 'center'},

@@ -31,7 +31,6 @@ def output_roaming_in(file_path):
     input_df = pd.read_csv(file_path, sep='\s+', skiprows=11, skipfooter=22, engine='python')
     input_df.columns = ["HLRADDR", "NSUB", "NSUBA"]
 
-
     # Lists to store the results
     country_names = []
     operators = []
@@ -60,8 +59,7 @@ def output_roaming_in(file_path):
     output_df['Operator'] = operators
     output_df.rename(columns={'NSUB': 'Number of SUBS'}, inplace=True)
 
-    # Print the output DataFrame
-    print("Output DataFrame:\n", output_df)
+    #print("Output DataFrame:\n", output_df)
     #output_df.to_csv('output.csv', index=False)
     return output_df
 
