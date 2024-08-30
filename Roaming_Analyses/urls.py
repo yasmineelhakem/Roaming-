@@ -19,12 +19,13 @@ from django.urls import path, include
 from roaming_files import views
 from django.conf.urls.static import static
 from django.conf import settings
-from roaming_files.views import statistics_view
+from roaming_files.views import roaming_in_stats, roaming_out_stats
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('statistics/<int:pk>/', statistics_view, name='statistics_view'),
+    path('RoamingIn/<int:pk>/', roaming_in_stats, name='roaming_in_stats'),
+    path('RoamingOut/<int:pk>/', roaming_out_stats, name='roaming_out_stats'),
     path('django_plotly_dash/', include('django_plotly_dash.urls'))
 ]
 
