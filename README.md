@@ -47,3 +47,7 @@ This Django application is designed to monitor and analyze roaming subscribers i
 - **`static/`**: Directory for static files like CSS and JavaScript.
 - **`templates/`**: Directory containing HTML templates used in the application.
 - **`media/`**: Directory where uploaded files and generated outputs are stored.
+
+## Deployment
+
+The application is deployed and available at: https://roaming-analyses.onrender.com/
